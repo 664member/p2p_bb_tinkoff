@@ -8,8 +8,8 @@ const FILTERS_FILE = path.join(__dirname, 'filters.json');
 // ==== ФИЛЬТРЫ ====
 let filters = {
   blacklist: [],
-  minPrice: 80,
-  amount: 30000,
+  minPrice: 83,
+  amount: 11000,
   keywords: ['одним'],
   bannedWords: ['беру %', 'беру процент'],
 };
@@ -27,8 +27,8 @@ if (fs.existsSync(FILTERS_FILE)) {
 
 
 // ==== Telegram ====
-const TELEGRAM_BOT_TOKEN = '';
-const TELEGRAM_CHAT_ID = ''; // например, @your_channel или id
+const TELEGRAM_BOT_TOKEN = '8191093663:AAGr51e-3EOllyw3JDdcv9mnFs9dH5s_w-w';
+const TELEGRAM_CHAT_ID = '965425988'; // например, @your_channel или id
 
 
 (async () => {
@@ -154,6 +154,8 @@ const TELEGRAM_CHAT_ID = ''; // например, @your_channel или id
     'li.pagination-item.pagination-item-1',
     'li.pagination-item.pagination-item-2',
     'li.pagination-item.pagination-item-3',
+    'li.pagination-item.pagination-item-4',
+    'li.pagination-item.pagination-item-5',
   ];
 
   async function goToPage(index) {
@@ -302,24 +304,24 @@ const TELEGRAM_CHAT_ID = ''; // например, @your_channel или id
       const el = document.querySelector(selector);
       if (el) el.value = '';
     }, sumInputSelector);
-    await page.type(sumInputSelector, '30000', { delay: 100 });
-    console.log('✅ Введена сумма 30000.');
+    await page.type(sumInputSelector, String(filters.amount) , { delay: 100 });
+    console.log(`✅ Введена сумма ${String(filters.amount)}`);
 
-    // Кликаем якорь меню
+/*     // Кликаем якорь меню
     await page.click('#paywayAnchorList');
     console.log('✅ Открыто якорное меню.');
 
     // Выбираем второй пункт
     await page.waitForSelector('#lists > li:nth-child(2)');
-    await page.click('#lists > li:nth-child(2)');
-    console.log('✅ Выбран второй пункт.');
+    await page.click('#lists > li:nth-child(2)'); 
+    console.log('✅ Выбран банк.');
 
     // Подтверждаем выбор
-    const confirmBtnSelector = '#paywayList > div > section > button.moly-btn.inline-flex.items-center.justify-center.rounded-lg.select-none.text-base.transition-all.leading-6.font-IBM.font-semibold.enabled\\:active\\:border-base-bds-gray-t4-dis.enabled\\:active\\:text-base-bds-gray-t1-title.enabled\\:hover\\:border-base-bds-gray-t4-dis.enabled\\:hover\\:text-base-bds-gray-t2.px-\\[24px\\].py-\\[11px\\].btn-confirm';
+    const confirmBtnSelector = '#paywayList > div > section > button.moly-btn.inline-flex.items-center.justify-center.select-none.transition-all.font-IBM.font-semibold.disabled\:cursor-not-allowed.disabled\:opacity-40.outline-none.ring-btn-default.focus-visible\:ring-\[5px\].border-y-\[1px\].border-solid.border-transparent.bg-brandColor-bds-brand-700-normal.text-base-bds-static-black.enabled\:active\:bg-brandColor-bds-brand-800-pressed.enabled\:active\:text-base-bds-static-black.enabled\:hover\:bg-brandColor-bds-brand-600-hover.text-sm.leading-\[22px\].px-\[16px\].py-\[8px\].rounded';
     await page.waitForSelector(confirmBtnSelector);
     await page.click(confirmBtnSelector);
     console.log('✅ Подтверждён выбор.');
-
+ */
     // Включаем перехват запросов
     interceptEnabled = true;
     console.log('🚀 Перехват запросов включён. Ждём первый ответ...');
